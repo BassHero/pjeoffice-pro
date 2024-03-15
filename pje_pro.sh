@@ -8,6 +8,7 @@ cd ~/Downloads
 wget https://raw.githubusercontent.com/BassHero/pjeoffice-pro/main/icon/pjeoffice-pro.png && mv pjeoffice-pro.png ~/.local/share/icons
 wget https://pje-office.pje.jus.br/pro/$pjeoffice_pro
 unzip -o $pjeoffice_pro
+rm $pjeoffice_pro
 cd pjeoffice-pro
 chmod a+x pjeoffice-pro.sh
 # ./pjeoffice-pro.sh
