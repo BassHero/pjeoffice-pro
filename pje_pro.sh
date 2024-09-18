@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pjeoffice_pro=pjeoffice-pro-v2.5.13u-linux_x64.zip
+pjeoffice_pro=pjeoffice-pro-v2.5.16u-linux_x64.zip
 
 # Página de download do PJeOffice: https://pjeoffice.trf3.jus.br/pjeoffice-pro/docs/index.html
 
