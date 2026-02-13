@@ -1,33 +1,56 @@
 #!/bin/bash
 
-pjeoffice_pro=pjeoffice-pro-v2.5.16u-linux_x64.zip
+echo "	############## PJe-Office Pro Linux Installer #############
+	###########################################################
+	
+	Instalador do PJe-Office Pro no Ubuntu e derivados.
+	
+	Página de download do PJe-Office Pro: 
+	https://pjeoffice.trf3.jus.br/pjeoffice-pro/docs/index.html
+	
+	Github desde Programa:
+	https://github.com/BassHero/pjeoffice-pro
+	
+	Autor: Renato Ramalho
+	email para contato: renatoramalho1986@gmail.com
+"
 
-# Página de download do PJeOffice: https://pjeoffice.trf3.jus.br/pjeoffice-pro/docs/index.html
+# Variáveis
 
-cd ~/Downloads
+WEB_LINK_PJE=https://pje-office.pje.jus.br/pro
+PJE_OFFICE_PRO=pjeoffice-pro-v2.5.16u-linux_x64.zip
+WEB_LINK_ICON=https://raw.githubusercontent.com/BassHero/pjeoffice-pro/main/icon
+PJE_ICON=pjeoffice-pro.png
+ICONS_DIR=$HOME/.local/share/icons
+APP_DIR=$HOME/.local/share/applications
 
-wget https://raw.githubusercontent.com/BassHero/pjeoffice-pro/main/icon/pjeoffice-pro.png && mv pjeoffice-pro.png ~/.local/share/icons
-wget https://pje-office.pje.jus.br/pro/$pjeoffice_pro
-unzip -o $pjeoffice_pro
-rm $pjeoffice_pro
+# Baixando o programa e o icone
 
-cd pjeoffice-pro && chmod a+x pjeoffice-pro.sh
+cd "$HOME/.local/share/"
 
-cd ~
+#wget "$WEB_LINK_PJE/$PJE_OFFICE_PRO"
+#unzip -o "$PJE_OFFICE_PRO"
+#rm "$PJE_OFFICE_PRO"
+cd pjeoffice-pro
+
+wget "$WEB_LINK_ICON/$PJE_ICON"
+mkdir -p "$ICONS_DIR"
+mv "$PJE_ICON" "$ICONS_DIR"
+
+# Executável da home
 
 echo "#!/bin/bash
-cd ~/Downloads/pjeoffice-pro
+cd $HOME/.local/share/pjeoffice-pro
 ./pjeoffice-pro.sh
-" >> pjeoffice-pro.sh
-chmod a+x pjeoffice-pro.sh
+" > pjeoffice-pro-exec.sh
 
-cd ~/.local/share/applications
+# Arquivo .desktop para aparecer na docker
 
 echo "[Desktop Entry]
 Encoding=UTF-8
 Name=PJeOffice
 GenericName=PJeOffice
-Exec=./pjeoffice-pro.sh
+Exec=./pjeoffice-pro-exec.sh
 Icon=pjeoffice-pro
 Type=Application
 Terminal=false
@@ -39,9 +62,18 @@ X-KDE-UniqueApplet=true
 X-KDE-autostart-condition=AutoStart:true
 Categories=Office;
 Comment=pjeoffice-pro
-" >> pjeoffice-pro.desktop
+" > pjeoffice-pro.desktop
+
+#Permitindoaexecuão
+
+chmod a+x pjeoffice-pro.sh
+chmod a+x pjeoffice-pro-exec.sh
 chmod a+x pjeoffice-pro.desktop
 
-cd ~
-./pjeoffice-pro.sh
+mv pjeoffice-pro-exec.sh $HOME
+mv pjeoffice-pro.desktop $APP_DIR
 
+#Executando
+
+cd $HOME
+./pjeoffice-pro-exec.sh
