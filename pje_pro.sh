@@ -28,9 +28,9 @@ APP_DIR=$HOME/.local/share/applications
 
 cd "$HOME/.local/share/"
 
-#wget "$WEB_LINK_PJE/$PJE_OFFICE_PRO"
-#unzip -o "$PJE_OFFICE_PRO"
-#rm "$PJE_OFFICE_PRO"
+wget "$WEB_LINK_PJE/$PJE_OFFICE_PRO"
+unzip -o "$PJE_OFFICE_PRO"
+rm "$PJE_OFFICE_PRO"
 cd pjeoffice-pro
 
 wget "$WEB_LINK_ICON/$PJE_ICON"
